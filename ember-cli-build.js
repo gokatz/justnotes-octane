@@ -11,6 +11,26 @@ module.exports = function(defaults) {
         'app/svgs',
       ],
     },
+
+    postcssOptions: {
+      compile: {
+        extension: 'scss',
+        enabled: true,
+        parser: require('postcss-scss'),
+        plugins: [
+          {
+            module: require('@csstools/postcss-sass'),
+            options: {
+              includePaths: [
+                // To pull up the styles from TailwindCSS and other tp packages
+                'node_modules'
+              ]
+            }
+          },
+          require('tailwindcss')('./config/tailwind.config.js')
+        ]
+      }
+    },
   });
 
   // Use `app.import` to add additional libraries to the generated
