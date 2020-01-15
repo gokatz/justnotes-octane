@@ -1,0 +1,25 @@
+<div
+  class="shadow px-4 py-2 m-1 font-sm text-xs rounded-sm cursor-pointer self-stretch {{if @isActive "bg-teal-100"}}"
+  ...attributes
+  {{on "click" @handleNoteSelection}}
+>
+
+  {{#if this.title}}
+    <div class="font-semibold mb-1"> {{this.title}}</div>
+  {{/if}}
+
+  <div class="v-ellipsis">{{this.content}}</div>
+
+  <div class="flex justify-between text-gray-600 mt-1">
+    <span class="flex items-center">
+      {{svg-jar "clock" class="mr-1" width="12px"}}
+      {{this.last_updated_time_formatted}}
+    </span>
+    {{#if this.tags.length}}
+      <span class="flex items-center">
+        {{svg-jar "tag" class="mr-1" width="12px"}}
+        {{this.tags.length}}
+      </span>
+    {{/if}}
+  </div>
+</div>

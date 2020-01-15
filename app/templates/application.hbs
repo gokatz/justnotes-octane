@@ -1,5 +1,26 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-<WelcomePage />
-{{!-- Feel free to remove this! --}}
 
-{{outlet}}
+{{!-- <Head>
+  <title>{title}</title>
+
+</Head> --}}
+
+{{!-- {{#if showNav}}
+  <Navs @handleAddNew={{handleAddNew}} />
+{{/if}} --}}
+
+<div class="flex p-4 sm:p-6">
+  <div class="hidden md:block w-1/12">
+    <Logo class="logo" @onClick={{this.meta.toggleSideBar}} />
+  </div>
+
+  <div class="w-full md:w-10/12">
+    {{outlet}}
+  </div>
+</div>
+
+<Ds::Toast />
+
+<Sidebar />
+
+{{!-- <SliderMenu />  --}}
+

@@ -1,0 +1,20 @@
+<div class="fixed sm:static p-2 tags-section">
+  {{#if this.tags.length}}
+    {{#each this.tags as |tag|}}
+      <span
+        class="text-blue-600 text-sm my-1 inline-block rounded-full shadow px-2 py-1 mr-2 bg-orange-100 cursor-pointer"
+      >
+        {{tag}}
+      </span>
+    {{/each}}
+  {{else}}
+    <i class="red text-sm text-gray-600">
+      Add tags by typing # in your notes
+      {{!-- <span class="text-blue-500 cursor-pointer hover:underline">
+        Show me how!
+      </span> --}}
+    </i>
+  {{/if}}
+
+
+</div>

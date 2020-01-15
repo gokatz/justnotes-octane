@@ -1,0 +1,86 @@
+.slider-menu-icon {
+  height: 2.3rem;
+  width: 2.3rem;
+}
+
+* {
+  /* font-family: 'Source Sans Pro', sans-serif; */
+  /* font-family: 'Roboto Mono', monospace; */
+  font-family: 'Work Sans', sans-serif;
+  /* font-family: 'Josefin Sans', sans-serif; */
+}
+
+.logo {
+  width: 45px;
+}
+
+.slider-menu {
+  left: -300px;
+  top: 0;
+  height: 100vh;
+  width: 270px;
+
+  transition: left 0.3s;
+}
+
+.slider-menu.open {
+  left: 0;
+}
+
+.toast {
+  bottom: 20px;
+  right: 0;
+  left: 0;
+}
+
+.msg {
+  max-width: 35%;
+}
+
+@media only screen and (max-width: 500px) {
+  .msg {
+    max-width: 100%;
+  }
+}
+
+.loader {
+  height: 15px;
+  width: 15px;
+  border: 2px solid transparent;
+  border-top-color: #75e6de;
+  animation: spin 0.5s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotateZ(0);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
+.tags-section {
+  bottom: 1rem;
+  left: 0;
+  right: 0;
+}
+
+// To accommodate the menu icon in mobile devices
+@media only screen and (max-width: 500px) {
+  .tags-section {
+    right: 4em;
+  }
+}
+
+.note-list {
+  height: 80vh;
+}
+
+.v-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}

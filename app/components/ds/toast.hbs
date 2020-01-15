@@ -1,0 +1,17 @@
+{{#if this.toastMsg}}
+  <div class="fixed text-center toast px-4">
+    <div class="p-2 px-4 bg-gray-800 text-white rounded inline-block text-sm msg">
+      <div class="flex">
+        <span>
+          {{this.emoji}} {{this.toastMsg}}
+        </span>
+
+        {{#unless this.autoclear}}
+          <span {{on "click" this.meta.clearToast}}>
+            {{svg-jar "close" class="cursor-pointer w-10 ml-3"}}
+          </span>
+        {{/unless}}
+      </div>
+    </div>
+  </div>
+{{/if}}

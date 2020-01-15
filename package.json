@@ -52,5 +52,11 @@
   },
   "ember": {
     "edition": "octane"
+  },
+  "dependencies": {
+    "ember-click-outside-modifier": "^0.1.2",
+    "ember-concurrency": "^1.1.4",
+    "ember-svg-jar": "^2.2.3",
+    "ember-truth-helpers": "^2.1.0"
   }
 }

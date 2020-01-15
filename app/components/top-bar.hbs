@@ -1,0 +1,10 @@
+  <div class="mb-6 justify-between flex md:hidden">
+    <span {{on "click" this.meta.toggleSideBar}}>
+      {{svg-jar "menu-grow" class="text-gray-700 h-5"}}
+    </span>
+
+    <div class="flex">
+      {{yield}}
+    </div>
+  
+  </div>

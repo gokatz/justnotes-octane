@@ -1,0 +1,39 @@
+<div class="hidden md:block w-5/12 ml-6">
+  <div class="flex">
+    <Icon
+      @icon="search"
+      @class="h-8 w-8"
+      @style="top: 5em; right: 1em"
+      @onClick={{this.handleSearch}}
+    />
+    <Input
+      placeholder="Search through your notes"
+      class="text-lg font-bold outline-none w-full ml-2"
+      @value={{this.searchText}}
+      {{on "keydown" this.handleNotesSearch}}
+    />
+  </div>
+
+  <div class="mt-4 flex flex-wrap items-start content-start note-list overflow-auto">
+    {{#if this.noteStore.fetchNotes.isRunning}}
+      <p class="w-full text-center mt-8">
+        <Loader class="mr-1" /> Fetching recent notes...
+      </p>
+    {{else}}
+
+      {{#each this.notes as |note|}}
+        <PreviewTile
+          @note={{note}}
+          @isActive={{eq (concat "" note.id) @noteId}}
+          class="w-2/5"
+          @handleNoteSelection={{@onNoteSelection}}
+        />
+      {{else}}
+        <em class="w-full text-center mt-8 text-gray-500">
+          You don&apos;t have any Notes. Create one!
+        </em>
+      {{/each}}
+
+    {{/if}}
+  </div>
+</div>
