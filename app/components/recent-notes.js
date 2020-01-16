@@ -15,12 +15,10 @@ export default class RecentNotesComponent extends Component {
 
   @action
   handleNotesSearch() {
-    if (!this.notes.length) {
-      return;
-    }
+    // if (!this.notes.length) {
+    //   return;
+    // }
 
-    this.noteStore.fetchNotes({
-      searchQuery: this.searchText
-    });
+    this.noteStore.fetchNotes.perform(this.searchText);
   }
 }

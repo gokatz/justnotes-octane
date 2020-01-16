@@ -12,7 +12,7 @@ export default class NoteService extends Service {
   @task(function*(searchQuery = '') {
     let params = {}
     if (searchQuery) {
-      params.q = searchQuery;
+      params.search_text = searchQuery;
     }
     let recentNotes = yield this.getNotes(params);
     this.notes = recentNotes;

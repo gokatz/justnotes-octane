@@ -5,7 +5,8 @@ export default class SearchRoute extends Route {
 
   @service('note') noteStore;
 
-  setupController() {
-    this.noteStore.fetchNotes.perform();
+  model(params = {}) {
+    let { search_term } = params;
+    return this.noteStore.fetchNotes.perform(search_term);
   }
 }

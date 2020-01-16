@@ -10,16 +10,16 @@
       placeholder="Search through your notes"
       class="text-lg font-bold outline-none w-full ml-2"
       @value={{this.searchText}}
-      {{on "keydown" this.handleNotesSearch}}
+      {{on "keyup" this.handleNotesSearch}}
     />
   </div>
 
   <div class="mt-4 flex flex-wrap items-start content-start note-list overflow-auto">
-    {{#if this.noteStore.fetchNotes.isRunning}}
+    {{!-- {{#if this.noteStore.fetchNotes.isRunning}}
       <p class="w-full text-center mt-8">
         <Loader class="mr-1" /> Fetching recent notes...
       </p>
-    {{else}}
+    {{else}} --}}
 
       {{#each this.notes as |note|}}
         <PreviewTile
@@ -34,6 +34,6 @@
         </em>
       {{/each}}
 
-    {{/if}}
+    {{!-- {{/if}} --}}
   </div>
 </div>

@@ -6,9 +6,11 @@ export default class Router extends EmberRouter {
   rootURL = config.rootURL;
 }
 
+const isMobileDevice = window.innerWidth <= 500;
+
 Router.map(function() {
-  this.route('note');
-  this.route('search');
+  this.route('note', isMobileDevice ? undefined : { path: '/' });
+  this.route('search', isMobileDevice ? { path: '/' } : undefined);
   this.route('signin');
   this.route('register');
 });
