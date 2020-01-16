@@ -1,39 +1,37 @@
-<div class="text-center mt-24">
-  <Logo class="cursor-pointer inline w-16" />
 
-   <div class="shadow form-container mx-auto pb-10 pt-2 mt-5 form-container">
-    <form
-      class="mt-6"
-      {{on "submit" (perform this.register)}}
-    >
-      <h3 class="text-lg my-3 px-4"> Create a JustNote account to start making beautiful notes </h3>
-      <Input
-        class="text-lg outline-none border border-gray-200 p-2 rounded-full m-4 w-3/4"
-        placeholder="Name"
-        autoComplete="username"
-        @value={{this.name}}
-      />
-      <Input
-        class="text-lg outline-none border border-gray-200 p-2 rounded-full m-4 w-3/4"
-        placeholder="Email"
-        autoComplete="email"
-        @value={{this.email}}
-      />
-      <Input
-        type="password"
-        class="text-lg outline-none border border-gray-200 p-2 rounded-full m-4 w-3/4"
-        placeholder="Password"
-        autoComplete="current-password"
-        @value={{this.password}}
-      />
+<div class="text-center">
+  <FormContainer 
+    @title="Create a JustNote account to start making beautiful notes"
+    @secondaryCTA={{hash
+      msg="Already have an account?"
+      label="Sign In"
+      route="signin"
+    }}
+  >
+    <Input
+      class="text-lg outline-none border border-gray-200 p-2 rounded-full m-4 w-3/4"
+      placeholder="Name"
+      autoComplete="username"
+      @value={{this.name}}
+    />
+    <Input
+      class="text-lg outline-none border border-gray-200 p-2 rounded-full m-4 w-3/4"
+      placeholder="Email"
+      autoComplete="email"
+      @value={{this.email}}
+    />
+    <Input
+      type="password"
+      class="text-lg outline-none border border-gray-200 p-2 rounded-full m-4 w-3/4"
+      placeholder="Password"
+      autoComplete="current-password"
+      @value={{this.password}}
+    />
 
+    <div>
       <Button class="m-4" {{on "click" (perform this.register)}}>
         Create My Notebook
       </Button>
-    </form>
-  </div>
-
-  <div class="mt-5 text-gray-600">
-    Already have an account? <LinkTo @route="signin" class="text-blue-600 cursor-pointer">Sign In</LinkTo>
-  </div>
+    </div>
+  </FormContainer>
 </div>

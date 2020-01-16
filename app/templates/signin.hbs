@@ -1,38 +1,33 @@
-<div class="text-center mt-24">
-  <Logo class="cursor-pointer inline w-16" />
-
-  <div class="shadow form-container mx-auto pb-10 pt-2 mt-5 form-container">
-    <form
-      class="mt-6"
-      {{on "submit" (perform this.signIn)}}
-    >
-      <h3 class="text-lg my-3"> Sign In to access your notes </h3>
-      <Input
-        class="text-lg outline-none border border-gray-200 p-2 rounded-full m-4 w-4/5"
-        placeholder="Email"
-        autoComplete="email"
-        @value={{this.email}}
-      />
-      <Input
-        type="password"
-        class="text-lg outline-none border border-gray-200 p-2 rounded-full m-4 w-4/5"
-        placeholder="Password"
-        autoComplete="current-password"
-        @value={{this.password}}
-      />
-      <div>
-        <Button 
-          class="m-4" 
-          @loading={{this.signIn.isRunning}}
-          {{on "click" (perform this.signIn)}}
-        >
-          Sign In
-        </Button>
-      </div>
-    </form>
-  </div>
-
-  <div class="mt-5 text-gray-600">
-    Don't have an account? <LinkTo @route="register" class="text-blue-600 cursor-pointer">Register</LinkTo>
-  </div>
+<div class="text-center">
+  <FormContainer 
+    @title="Sign In to access your notes"
+    @secondaryCTA={{hash
+      msg="Don't have an account?"
+      label="Register"
+      route="register"
+    }}
+  >
+    <Input
+      class="text-lg outline-none border border-gray-200 p-2 rounded-full m-4 w-4/5"
+      placeholder="Email"
+      autoComplete="email"
+      @value={{this.email}}
+    />
+    <Input
+      type="password"
+      class="text-lg outline-none border border-gray-200 p-2 rounded-full m-4 w-4/5"
+      placeholder="Password"
+      autoComplete="current-password"
+      @value={{this.password}}
+    />
+    <div>
+      <Button 
+        class="m-4" 
+        @loading={{this.signIn.isRunning}}
+        {{on "click" (perform this.signIn)}}
+      >
+        Sign In
+      </Button>
+    </div>
+  </FormContainer>
 </div>
