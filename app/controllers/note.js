@@ -68,15 +68,18 @@ export default class NoteController extends Controller {
     return !this.note_id || this.note_id === 'new';
   }
 
-  handleNoteContentRemoval() {
+  handleNoteContentRemoval({ allowNoteRemoval = true } = {}) {
     // Removing a note from list if it don't have any title and content
     this.noteStore.updateNotesList({ id: this.note_id }, { operation: 'delete' });
 
-    this.meta.showToast(
-      'The last note has been moved to Archives since you\'ve cleared it\'s content. This can be recovered at anytime', {
-        autoclear: false
-      }
-    );
+    if (allowNoteRemoval) {
+      this.meta.showToast(
+        'The last note has been moved to Archives since you\'ve cleared it\'s content. This can be recovered at anytime', {
+          autoclear: false
+        }
+      );
+    }
+
   }
 
   @task(function*(noteId = '', params = {}, allowNoteRemoval) {
@@ -84,10 +87,8 @@ export default class NoteController extends Controller {
     let { title, content } = params;
     let isNoteRemoval =  !title && !content;
 
-    if (isNoteRemoval && !allowNoteRemoval) {
-      console.log('only remove con');
-      
-      this.handleNoteContentRemoval();
+    if (isNoteRemoval && !allowNoteRemoval) {      
+      this.handleNoteContentRemoval({ allowNoteRemoval: false });
       return;
     }
 
@@ -135,7 +136,7 @@ export default class NoteController extends Controller {
     let { title, content } = this;
 
     if (!title && !content) {
-      this.handleNoteContentRemoval();
+      this.handleNoteContentRemoval({ allowNoteRemoval: true });
     }
     
     let {

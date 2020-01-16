@@ -6,7 +6,9 @@
     <LinkTo @route="note">
       <div class="flex items-center pb-4 border-b">
         <Logo class="mr-4" style="width: 30px"/>
-        Hey, {{this.user.userName}}
+        <div class="truncate">
+          Hey, {{or this.user.name this.user.email}}
+        </div>
       </div>
     </LinkTo>
   </div>
@@ -31,7 +33,7 @@
   <Sidebar::MenuItem
     @icon="log-out"
     @title="Log out"
-    @onClick={{this.user.logout}}
+    @onClick={{this.logoutUser}}
     style="bottom: 0"
     class="absolute mb-2"
   />

@@ -1,0 +1,12 @@
+<button 
+  type="button" 
+  class="p-2 px-4 bg-teal-300 text-black rounded cursor-pointer {{if this.loading 'opacity-25 cursor-not-allowed'}}" 
+  ...attributes
+  disabled={{this.loading}}
+>
+  {{#if hasBlock}}
+    {{yield}}
+  {{else}}
+    {{@name}}
+  {{/if}}
+</button>

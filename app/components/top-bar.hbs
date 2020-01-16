@@ -3,8 +3,10 @@
       {{svg-jar "menu-grow" class="text-gray-700 h-5"}}
     </span>
 
-    <div class="flex">
-      {{yield}}
-    </div>
+    {{#if hasBlock}}
+      <div class="flex">
+        {{yield}}
+      </div>
+    {{/if}}
   
   </div>

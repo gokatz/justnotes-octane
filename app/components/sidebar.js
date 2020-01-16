@@ -4,14 +4,9 @@ import { action } from '@ember/object';
 
 export default class SidebarComponent extends Component {
 
-  @service
-  meta;
-
-  @service
-  user;
-
-  @service
-  router;
+  @service meta;
+  @service user;
+  @service router;
 
   menus = [
     {
@@ -68,5 +63,11 @@ export default class SidebarComponent extends Component {
     if (this.meta.isSideBarOpen) {
       this.meta.toggleSideBar()
     }
+  }
+
+  @action
+  logoutUser() {
+    this.user.logoutAndRedirectToSignIn();
+    this.meta.toggleSideBar();
   }
 }

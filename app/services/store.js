@@ -29,10 +29,23 @@ export default class StoreService extends Service {
 
     try {
       let response = await window.fetch(url, fetchOptions);
-      let json = await response.json();
-      return {
-        data: json
-      };
+      // let json = await response.json();
+      // return {
+      //   data: json
+      // };
+      let responseJson = {}
+
+      try {
+        responseJson = await response.json();
+      } catch(e) {
+        // no op
+      }
+
+      if (response.ok) {
+        return { data: responseJson };
+      } else {
+        throw responseJson;
+      }
     } catch (error) {
       // Log network errors
       // eslint-disable-next-line no-console

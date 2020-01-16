@@ -1,6 +1,7 @@
 import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
+import { inject as service } from '@ember/service';
 
 export default class MetaService extends Service {
 
@@ -16,6 +17,12 @@ export default class MetaService extends Service {
   @tracked toastOptions = {};
   @tracked isSliderMenuOpen = false;
   @tracked isSideBarOpen = false;
+
+  @service router;
+
+  isProtectedPage(routeName) {
+    return !['signin', 'register'].includes(routeName);
+  }
 
   @action 
   showToast(message, options = {}) {

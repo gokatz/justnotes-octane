@@ -1,0 +1,32 @@
+<div class="text-center mt-24">
+  <Logo class="cursor-pointer inline w-16" />
+
+  <form
+    class="mt-6"
+    {{on "submit" (perform this.register)}}
+  >
+    <Input
+      class="text-lg outline-none border border-gray-200 p-2 rounded-full m-4 w-3/4"
+      placeholder="Name"
+      autoComplete="username"
+      @value={{this.name}}
+    />
+    <Input
+      class="text-lg outline-none border border-gray-200 p-2 rounded-full m-4 w-3/4"
+      placeholder="Email"
+      autoComplete="email"
+      @value={{this.email}}
+    />
+    <Input
+      type="password"
+      class="text-lg outline-none border border-gray-200 p-2 rounded-full m-4 w-3/4"
+      placeholder="Password"
+      autoComplete="current-password"
+      @value={{this.password}}
+    />
+
+    <Button class="m-4" {{on "click" (perform this.register)}}>
+      Create My Notebook
+    </Button>
+  </form>
+</div>

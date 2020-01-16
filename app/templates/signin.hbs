@@ -1,0 +1,30 @@
+<div class="text-center mt-24">
+  <Logo class="cursor-pointer inline w-16" />
+
+  <form
+    class="mt-6"
+    {{on "submit" (perform this.signIn)}}
+  >
+    <Input
+      class="text-lg outline-none border border-gray-200 p-2 rounded-full m-4 w-3/4"
+      placeholder="Email"
+      autoComplete="email"
+      @value={{this.email}}
+    />
+    <Input
+      type="password"
+      class="text-lg outline-none border border-gray-200 p-2 rounded-full m-4 w-3/4"
+      placeholder="Password"
+      autoComplete="current-password"
+      @value={{this.password}}
+    />
+
+    <Button 
+      class="m-4" 
+      @loading={{this.signIn.isRunning}}
+      {{on "click" (perform this.signIn)}}
+    >
+      Sign In
+    </Button>
+  </form>
+</div>
