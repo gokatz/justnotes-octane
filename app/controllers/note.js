@@ -140,6 +140,20 @@ export default class NoteController extends Controller {
   }
 
   @action
+  async deleteNote(noteId) {
+    await this.meta.showConfirm({ message: 'Are you sure to delete this note?' });
+    try {
+      await this.store.makeRequest(`/note/${noteId}`, {
+        method: 'DELETE'
+      });
+      this.noteStore.updateNotesList({ id: noteId }, { operation: 'delete' });
+      this.meta.showToast('Note deleted successfully and moved to Archive if you need to retrieve 😉')  
+    } catch (error) {
+      this.meta.showToast.error('Error white deleting the note. Try after sometime');
+    }
+  }
+
+  @action
   handleNoteSelection(note = {}) {
     let { title, content } = this.model;
 
