@@ -1,5 +1,7 @@
 <TopBar> 
-  {{svg-jar "plus-circle" class="text-teal-400 h-5 ml-3"}}
+  <span {{on "click" this.saveAndAddNew}}>
+    {{svg-jar "plus-circle" class="text-teal-400 h-5 ml-3"}}
+  </span>
   {{svg-jar "trash" class="text-gray-700 h-5 ml-3"}}
   {{svg-jar "save" class="text-gray-700 h-5 ml-3"}}
   {{svg-jar "more-vertical" class="text-gray-700 h-5 ml-3"}}

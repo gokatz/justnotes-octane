@@ -153,8 +153,8 @@ export default class NoteController extends Controller {
     // notesContentElement.current.focus();
   }
 
-  setNoteContent() {
-    let { title = '', content = '', id = '' } = this;
+  setNoteContent(note = {}) {
+    let { title = '', content = '', id = '' } = note;
     this.title = title;
     this.content = content;
     this.note_id = id;
