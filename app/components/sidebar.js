@@ -61,7 +61,7 @@ export default class SidebarComponent extends Component {
   @action
   onClickOutside() {
     if (this.meta.isSideBarOpen) {
-      this.meta.toggleSideBar()
+      this.meta.toggleSideBar();
     }
   }
 

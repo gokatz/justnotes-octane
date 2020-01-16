@@ -26,7 +26,7 @@ export default class ApplicationRoute extends Route {
     let isProtectedPage = this.meta.isProtectedPage(targetName);
 
     if (isAuthenticated && !isProtectedPage) {
-      this.transitionTo('note');
+      this.transitionTo('application');
     }
 
     if (!isAuthenticated && isProtectedPage) {

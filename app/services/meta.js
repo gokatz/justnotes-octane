@@ -52,9 +52,8 @@ export default class MetaService extends Service {
   }
 
   @action 
-  toggleSideBar(event) {
+  toggleSideBar() {
     this.isSideBarOpen = !this.isSideBarOpen;
-    // event && event.stopPropagation();
   }
 
   @action
