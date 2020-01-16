@@ -29,9 +29,9 @@
   <div class="w-full md:w-7/12" style="left: 100px">
     <div class="flex items-center">
       <Input
-        class="text-2xl font-bold outline-none w-full sm:w-2/3"
+        class="text-xl font-bold outline-none w-full sm:w-2/3"
         placeholder="What's this Note about?"
-        @value={{this.title}}
+        @value={{@model.title}}
         {{on "keyup" this.saveCurrentNote}}
       />
       <SavingIndicator @isSaving={{this.isNoteSaving}} />
@@ -40,16 +40,16 @@
     <div class="mt-4">
       <Textarea
         style="height: 70vh"
-        class="resize-none outline-none text-lg bg-gray-2000 w-full"
+        class="resize-none outline-none bg-gray-2000 w-full"
         placeholder="Type your notes here..."
-        @value={{this.content}}
+        @value={{@model.content}}
         {{on "keyup" this.saveCurrentNote}}
         autofocus={{true}}
       ></Textarea>
     </div>
 
     <div class="mt-2">
-      <Tags @note={{this.content}} />
+      <Tags @note={{@model.content}} />
     </div>
   </div>
 

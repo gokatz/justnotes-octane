@@ -8,8 +8,9 @@ export default class PreviewTileComponent extends Component {
   @reads('args.note.content')
   content;
 
-  @reads('args.note.last_updated_time_formatted')
-  last_updated_time_formatted;
+  get lastModifiedTime() {
+    return this.args.note.lastModifiedTime;
+  }
 
   @reads('args.note.tags')
   tags;

@@ -11,9 +11,6 @@ export default class NoteController extends Controller {
   @service store;
   @service('note') noteStore;
 
-  @tracked title = '';
-  @tracked content = '';
-
   @reads('noteStore.notes')
   notes;
 
@@ -23,7 +20,8 @@ export default class NoteController extends Controller {
   @action
   async saveCurrentNote({ allowNoteRemoval = false } = {}) {
     // TODO: UpdateLocalState - Use any libraries like OrbitJS
-    let { title, content, note_id } = this;
+    let { title, content } = this.model;
+    let { note_id } = this;
     let params = {
       title,
       content
@@ -47,7 +45,7 @@ export default class NoteController extends Controller {
   }
 
   get isEmptyNote() {
-    return !this.title && !this.content;
+    return !this.model.title && !this.model.content;
   }
 
   @action
@@ -141,10 +139,11 @@ export default class NoteController extends Controller {
     return data;
   }
 
+  @action
   handleNoteSelection(note = {}) {
-    let { title, content } = this;
+    let { title, content } = this.model;
 
-    if (!title && !content) {
+    if (!this.isNewNote && !title && !content) {
       this.handleNoteContentRemoval({ allowNoteRemoval: true });
     }
     
@@ -164,8 +163,8 @@ export default class NoteController extends Controller {
 
   setNoteContent(note = {}) {
     let { title = '', content = '', id = '' } = note;
-    this.title = title;
-    this.content = content;
+    // this.model.title = title;
+    // this.model.content = content;
     this.note_id = id;
   }
 }

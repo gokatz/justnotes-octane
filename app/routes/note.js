@@ -3,11 +3,30 @@ import { inject as service } from '@ember/service';
 
 export default class NoteRoute extends Route {
 
-  @service note;
+  queryParams = {
+    note_id: {
+      refreshModel: true
+    }
+  }
+
+  @service('note') noteStore;
+
+  async model(params = {}) {
+    let { note_id } = params;
+    if (note_id) {
+      let note = await this.noteStore.getNote(note_id);
+      return note;
+    }
+    return {
+      title: '',
+      content: ''
+    };
+  }
 
   setupController() {
+    super.setupController(...arguments);
     // super(...arguments);
     // Lazily fetch notes;
-    this.note.fetchNotes.perform();
+    this.noteStore.fetchNotes.perform();
   }
 }

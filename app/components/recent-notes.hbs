@@ -26,7 +26,7 @@
           @note={{note}}
           @isActive={{eq (concat "" note.id) @noteId}}
           class="w-2/5"
-          @handleNoteSelection={{@onNoteSelection}}
+          @handleNoteSelection={{fn @onNoteSelection note}}
         />
       {{else}}
         <em class="w-full text-center mt-8 text-gray-500">

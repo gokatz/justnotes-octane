@@ -1,5 +1,5 @@
 <TopBar> 
-  <LinkTo @route="note" class="flex text-teal-400 items-center">
+  <LinkTo @route="note" @query={{hash note_id=""}} class="flex text-teal-400 items-center">
     {{svg-jar "plus-circle" class="h-5 mr-1"}}
     {{!-- {{svg-jar "plus-circle" class="text-teal-400 h-5 ml-3"}} --}}
     Create New Note
@@ -13,30 +13,33 @@
 />
 
 {{#if this.noteStore.fetchNotes.isRunning}}
-  <Loader class="mr-1" /> 
-  &nbsp; 
-  {{if this.searchTerm "Searching through your notes..." "Fetching recent notes..."}} 
+  <div class="text-center mt-10">
+    <Loader class="mr-1" /> 
+    &nbsp; 
+    {{if this.searchTerm "Searching through your notes..." "Fetching recent notes..."}} 
+  </div>
 {{else}}
 
   {{#if this.noteStore.notes}}
     {{#if this.searchTerm}}
-      <p>
+      <p class="my-3">
         Showing results for
-        <span class="font-bold">&quot;{searchTerm}&quot;</span>
+        <span class="font-bold">&quot;{{this.searchTerm}}&quot;</span>
       </p>
-    {{else}}
-        <p class="font-bold"> Recent notes </p>
     {{/if}}
 
-    {{#each this.noteStore.notes as |note|}}
-      <PreviewTile
-        @note={{note}}
-        class="w-full sm:w-3/12"
-        @handleNoteSelection={{this.goToNote}}
-      />
-    {{/each}}
+    <div class="mt-4 flex flex-wrap">
+      {{#each this.noteStore.notes as |note|}}
+        <PreviewTile
+          @note={{note}}
+          class="w-full sm:w-3/12"
+          @handleNoteSelection={{fn this.goToNote note}}
+        />
+      {{/each}}
+    </div>
+
   {{else}}
-    <p>No results found!</p>
+    <p class="text-center mt-10 italic text-gray-600">No results found!</p>
   {{/if}}
 
 

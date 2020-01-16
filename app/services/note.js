@@ -28,6 +28,14 @@ export default class NoteService extends Service {
     return data;
   }
 
+  async getNote(noteId) {
+    if (this.fetchNotes.isRunning || !this.fetchNotes.lastSuccessful) {
+      let { data } = await this.store.makeRequest(`/note/${noteId}`); 
+      return data;
+    }
+    return this.notes.find(({ id }) => id == noteId);
+  }
+
   @action 
   updateNotesList(noteData = {}, { operation = 'update' } = {}) {
     // Removing an existing note

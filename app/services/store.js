@@ -9,6 +9,13 @@ export default class StoreService extends Service {
     rootUrl = 'http://localhost:8080';
     let { method = 'get', data = {}, params = {} } = options;
     url = rootUrl + url;
+
+    let searchParam = new URLSearchParams(params);
+    params = searchParam.toString();
+    
+    if (params) {
+      url += `?${params}`
+    }
   
     let accessToken = getCookie('justpass');
   
@@ -16,7 +23,6 @@ export default class StoreService extends Service {
   
     let fetchOptions = {
       method,
-      params,
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${accessToken}`
