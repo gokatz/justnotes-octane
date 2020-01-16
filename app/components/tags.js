@@ -1,10 +1,10 @@
 import Component from '@glimmer/component';
+import { getTags } from '../utils';
 
 export default class TagsComponent extends Component {
 
   get tags() {
-    let allTags = (this.args.note || '').match(/#[A-Za-z0-9]*/g) || [];
-    return allTags.filter(tagName => tagName !== '#');
+    return getTags(this.args.content);
   }
 
 }

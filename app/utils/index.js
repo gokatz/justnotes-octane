@@ -32,3 +32,8 @@ export function getCookie(cname) {
   }
   return '';
 }
+
+export function getTags(note = '') {
+  let allTags = note.match(/#[A-Za-z0-9]*/g) || [];
+  return allTags.filter(tagName => tagName !== '#')
+}

@@ -1,5 +1,6 @@
 import Component from '@glimmer/component';
 import { reads } from '@ember/object/computed';
+import { getTags } from '../utils';
 
 export default class PreviewTileComponent extends Component {
   @reads('args.note.title')
@@ -9,9 +10,13 @@ export default class PreviewTileComponent extends Component {
   content;
 
   get lastModifiedTime() {
-    return this.args.note.lastModifiedTime;
+    return new Date(this.args.note.lastModifiedTime).toDateString();
   }
 
-  @reads('args.note.tags')
-  tags;
+  // @reads('args.note.tags')
+  // tags;
+
+  get tags() {
+    return getTags(this.content); 
+  }
 }
