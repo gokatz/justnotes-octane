@@ -22,5 +22,15 @@
 
 <Sidebar />
 
+{{#if this.meta.canShowConfirm}}
+  <Modal>
+    {{this.meta.confirmOptions.message}}
+    <div class="mt-5">
+      <Button @size="sm" {{on "click" this.meta.confirmOptions.onConfirm}}> {{this.meta.confirmOptions.primaryBtnLabel}} </Button>
+      <Button @size="sm" @type="secondary" {{on "click" this.meta.confirmOptions.onReject}}> {{this.meta.confirmOptions.secBtnLabel}} </Button>
+    </div>
+  </Modal>
+{{/if}}
+
 {{!-- <SliderMenu />  --}}
 

@@ -52,14 +52,23 @@ export default class NoteController extends Controller {
 
   @action
   async saveAndAddNew() {
+
+    if (this.isNewNote) {
+      return;
+    }
+
     let isEmptyNote = this.isEmptyNote;
     if (isEmptyNote && !this.isNewNote) {
-      let canDeleteContent = window.confirm('You have deleted all the content of the current note. Switching to an another note or creating an another note will delete this note. Are you sure?')
-      if (!canDeleteContent) {
+      try {
+        await this.meta.showConfirm({
+          message: 'You have deleted all the content of the current note. Switching to an another note or creating a new note will delete this note. Are you sure?'
+        })  
+      } catch (error) {
         return;
       }
     }
 
+    this.meta.showToast('New note created successfully!');
     await this.saveCurrentNote(true); // allowNoteRemoval
     this.setNoteContent(); // clear out the note content
   }

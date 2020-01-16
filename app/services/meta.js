@@ -17,6 +17,8 @@ export default class MetaService extends Service {
   @tracked toastOptions = {};
   @tracked isSliderMenuOpen = false;
   @tracked isSideBarOpen = false;
+  @tracked canShowConfirm = false;
+  @tracked confirmOptions = {};
 
   @service router;
 
@@ -52,5 +54,27 @@ export default class MetaService extends Service {
   @action 
   toggleSideBar() {
     this.isSideBarOpen = !this.isSideBarOpen;
+  }
+
+  @action
+  showConfirm(options = {}) {
+    let { message = 'Are you sure about this action', primaryBtnLabel = 'Yeah. Go ahead', secBtnLabel = 'Nope' } = options;
+
+    return new Promise((resolve, reject) => {
+      this.canShowConfirm = true;
+      this.confirmOptions = {
+        message,
+        primaryBtnLabel,
+        secBtnLabel,
+        onConfirm: (() => {
+          resolve();
+          this.canShowConfirm = false;
+        }).bind(this),
+        onReject: (() => {
+          reject();
+          this.canShowConfirm = false;
+        }).bind(this)
+      };
+    })
   }
 }

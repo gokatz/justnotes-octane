@@ -1,6 +1,6 @@
 <button 
   type="button" 
-  class="p-2 px-4 bg-teal-300 text-black rounded cursor-pointer {{if this.loading 'opacity-25 cursor-not-allowed'}}" 
+  class="px-4 rounded cursor-pointer {{if this.loading 'opacity-25 cursor-not-allowed'}} {{this.sizeClass}} {{this.typeClass}}" 
   ...attributes
   disabled={{this.loading}}
 >
