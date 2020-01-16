@@ -34,7 +34,7 @@ export default class SigninController extends Controller {
 
       let { data: { token } = {} } = response || {};
       document.cookie = `justpass=${token}`;
-      this.transitionToRoute('/note').then(() => window.location.reload());
+      this.transitionToRoute('application').then(() => window.location.reload());
 
     } catch (error) {
       let msg =
