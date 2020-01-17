@@ -9,6 +9,7 @@ export default class ApplicationRoute extends Route {
   @service user;
   @service meta;
   @service('note') noteStore;
+  @service router;
 
   async beforeModel(transition) {
 
@@ -25,6 +26,12 @@ export default class ApplicationRoute extends Route {
   setupController() {
     super.setupController(...arguments);
     this.noteStore.fetchNotes.perform();
+
+    this.router.on('routeWillChange', (transition) => {      
+      if (!transition.to.find(route => route.name === this.router.currentRouteName)) {
+        this.meta.clearToast();
+      }
+    })
   }
 
   async handleAuth(transition) {
