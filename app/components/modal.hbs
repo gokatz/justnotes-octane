@@ -1,5 +1,9 @@
-<div class="fixed backdrop"></div>
-<div class="fixed modal">
+<div 
+  class="fixed bg-black left-0 bottom-0 right-0 top-0 transition-opacity duration-100 ease-in {{if this.startAnimate 'opacity-25' 'opacity-0'}}"
+></div>
+<div 
+  class="fixed modal transition-opacity duration-100 ease-in {{if this.startAnimate 'opacity-1' 'opacity-0'}}"
+>
   <div class="content shadow bg-white mx-auto p-5 rounded text-center text-sm">
     {{yield}}
   </div>

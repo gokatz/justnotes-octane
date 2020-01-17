@@ -141,6 +141,9 @@ export default class NoteController extends Controller {
 
   @action
   async deleteNote(noteId) {
+    if (this.isNewNote) {
+      return;
+    }
     await this.meta.showConfirm({ message: 'Are you sure to delete this note?' });
     try {
       await this.store.makeRequest(`/note/${noteId}`, {

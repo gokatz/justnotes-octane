@@ -23,7 +23,6 @@
 
 .slider-menu {
   left: -300px;
-  top: 0;
   height: 100vh;
   width: 270px;
 
@@ -36,8 +35,6 @@
 
 .toast {
   bottom: 20px;
-  right: 0;
-  left: 0;
 }
 
 .msg {
@@ -69,8 +66,6 @@
 
 .tags-section {
   bottom: 1rem;
-  left: 0;
-  right: 0;
 }
 
 // To accommodate the menu icon in mobile devices
@@ -90,15 +85,6 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
-}
-
-.backdrop {
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  background-color: #000;
-  opacity: 0.1;
 }
 
 .modal {
