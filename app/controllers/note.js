@@ -1,9 +1,11 @@
 import Controller from '@ember/controller';
 import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
-import { task, didCancel } from 'ember-concurrency';
+import { task, didCancel, timeout } from 'ember-concurrency';
 import { reads } from '@ember/object/computed';
 import { action } from '@ember/object';
+
+const DEBOUNCE_TIMEOUT = 500;
 
 export default class NoteController extends Controller {
 
@@ -90,6 +92,9 @@ export default class NoteController extends Controller {
   }
 
   @task(function*(noteId = '', params = {}, allowNoteRemoval) {
+
+    yield timeout(DEBOUNCE_TIMEOUT);
+
     let isNewNote = this.isNewNote;
     let { title, content } = params;
     let isNoteRemoval =  !title && !content;
@@ -120,7 +125,7 @@ export default class NoteController extends Controller {
       throw error;      
     }
 
-  }).keepLatest()
+  }).restartable()
   updateOrCreateNoteTask;
 
   async createNote(payload) {
