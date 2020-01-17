@@ -5,8 +5,6 @@ import { task, didCancel, timeout } from 'ember-concurrency';
 import { reads } from '@ember/object/computed';
 import { action } from '@ember/object';
 
-const DEBOUNCE_TIMEOUT = 500;
-
 export default class NoteController extends Controller {
 
   @service meta;
@@ -93,7 +91,7 @@ export default class NoteController extends Controller {
 
   @task(function*(noteId = '', params = {}, allowNoteRemoval) {
 
-    yield timeout(DEBOUNCE_TIMEOUT);
+    yield timeout(this.noteStore.OPERATION_DEBOUNCE);
 
     let isNewNote = this.isNewNote;
     let { title, content } = params;
@@ -124,6 +122,7 @@ export default class NoteController extends Controller {
       // Retry Saving
       throw error;      
     }
+    console.log('TASK 3');
 
   }).restartable()
   updateOrCreateNoteTask;

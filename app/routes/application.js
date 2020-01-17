@@ -8,6 +8,7 @@ export default class ApplicationRoute extends Route {
 
   @service user;
   @service meta;
+  @service('note') noteStore;
 
   async beforeModel(transition) {
 
@@ -17,7 +18,13 @@ export default class ApplicationRoute extends Route {
       // NoOperation
     }
 
+    // TODO: need to move to service to watch on every route transition.
     this.handleAuth(transition);
+  }
+
+  setupController() {
+    super.setupController(...arguments);
+    this.noteStore.fetchNotes.perform();
   }
 
   async handleAuth(transition) {

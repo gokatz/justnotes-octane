@@ -10,7 +10,7 @@
       placeholder="Search through your notes"
       class="text-lg font-bold outline-none w-full ml-2"
       @value={{this.searchText}}
-      {{on "keyup" (perform this.handleNotesSearch)}}
+      {{on "keyup" (perform this.noteStore.fetchNotes this.searchText)}}
     />
   </div>
 
