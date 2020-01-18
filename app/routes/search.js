@@ -9,4 +9,12 @@ export default class SearchRoute extends Route {
     let { search_term } = params;
     return this.noteStore.fetchNotes.perform(search_term);
   }
+
+  resetController(controller, isExiting) {
+    super.resetController(...arguments);
+
+    if (isExiting) {
+      controller.search_term = ''
+    }
+  }
 }

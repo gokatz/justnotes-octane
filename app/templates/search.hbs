@@ -6,12 +6,14 @@
   </LinkTo>
 </TopBar>
 
-<Input
-  class="text-2xl font-bold outline-none w-full"
-  placeholder="Search across your notes..."
-  @value={{this.search_term}}
-  {{on "keyup" (perform this.noteStore.fetchNotes this.search_term)}}
-/>
+<div>
+
+  <Input
+    class="text-2xl font-bold outline-none w-full"
+    placeholder="Search across your notes..."
+    @value={{this.search_term}}
+    {{on "keyup" (perform this.noteStore.fetchNotes this.search_term)}}
+  />
 
 {{!-- {{#if this.noteStore.fetchNotes.isRunning}}
   <div class="text-center mt-10">
@@ -46,3 +48,5 @@
 
 
 {{!-- {{/if}} --}}
+
+</div>
