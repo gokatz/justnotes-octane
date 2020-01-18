@@ -7,7 +7,7 @@ export default class StoreService extends Service {
     let rootUrl = 'http://varun-3902.csez.zohocorpin.com:8080';
     // rootUrl = 'http://varun-3902:8080';
     rootUrl = 'http://localhost:8080';
-    rootUrl = 'http://justnote.westus2.cloudapp.azure.com:8080';
+    rootUrl = 'https://justnote.westus2.cloudapp.azure.com:8080';
     let { method = 'get', data = {}, params = {} } = options;
     url = rootUrl + url;
 
