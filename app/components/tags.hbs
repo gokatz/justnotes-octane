@@ -1,11 +1,13 @@
 <div class="fixed sm:static p-2 left-0 right-0 tags-section">
   {{#if this.tags.length}}
     {{#each this.tags as |tag|}}
-      <span
-        class="text-blue-600 text-sm my-1 inline-block rounded-full shadow px-2 py-1 mr-2 bg-orange-100 cursor-pointer"
+      <LinkTo 
+        @route="search" 
+        @query={{hash search_term=tag}}
+        class="tag"
       >
         {{tag}}
-      </span>
+      </LinkTo>
     {{/each}}
   {{else}}
     <i class="red text-sm text-gray-600">
