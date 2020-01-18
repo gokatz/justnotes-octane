@@ -153,7 +153,8 @@ export default class NoteController extends Controller {
         method: 'DELETE'
       });
       this.noteStore.updateNotesList({ id: noteId }, { operation: 'delete' });
-      this.meta.showToast('Note deleted successfully and moved to Archive if you need to retrieve 😉')  
+      this.meta.showToast('Note deleted successfully and moved to Archive if you need to retrieve 😉');
+      this.setNoteContent();
     } catch (error) {
       this.meta.showToast.error('Error white deleting the note. Try after sometime');
     }

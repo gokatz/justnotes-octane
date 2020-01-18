@@ -34,7 +34,8 @@ export default class SigninController extends Controller {
 
       let { data: { token } = {} } = response || {};
       document.cookie = `justpass=${token}`;
-      this.transitionToRoute('application');
+      // this.transitionToRoute('application');
+      window.location.reload();
     } catch (error) {
       let msg =
       (error.response || {}).status === 401

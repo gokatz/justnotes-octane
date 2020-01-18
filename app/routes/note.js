@@ -10,12 +10,18 @@ export default class NoteRoute extends Route {
   }
 
   @service('note') noteStore;
+  @service meta;
 
   async model(params = {}) {
     let { note_id } = params;
     if (note_id) {
-      let note = await this.noteStore.getNote(note_id);
-      return note;
+      try {
+        let note = await this.noteStore.getNote(note_id);
+        return note;  
+      } catch (error) {
+        let { error_msg = 'Error while fetching the selected note' } = error;
+        this.meta.showToast.error(error_msg, { autoclear: false });
+      }
     }
     return {
       title: '',

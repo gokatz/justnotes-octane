@@ -26,7 +26,7 @@ export default class ApplicationRoute extends Route {
   setupController() {
     super.setupController(...arguments);
 
-    if (this.meta.isAuthenticated) {
+    if (this.user.isAuthenticated) {
       this.noteStore.fetchNotes.perform();
     }
 
