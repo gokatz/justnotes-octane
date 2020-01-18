@@ -37,8 +37,8 @@ export default class SigninController extends Controller {
       this.transitionToRoute('application');
     } catch (error) {
       let msg =
-      error.response.status === 401
-        ? "Oops. Seems you've mistyped your Email or Password" // eslint-disable-line quotes
+      (error.response || {}).status === 401
+        ? 'Oops. Seems you\'ve mistyped your Email or Password'
         : 'Something went wrong. Please try after some time';
 
       this.meta.showToast.error(msg, {

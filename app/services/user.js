@@ -50,6 +50,7 @@ export default class UserService extends Service {
         this.name = name;
       })
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.log('Authentication error : ', error);
       throw error;
     }

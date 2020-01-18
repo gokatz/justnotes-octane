@@ -122,7 +122,6 @@ export default class NoteController extends Controller {
       // Retry Saving
       throw error;      
     }
-    console.log('TASK 3');
 
   }).restartable()
   updateOrCreateNoteTask;
@@ -183,7 +182,7 @@ export default class NoteController extends Controller {
   }
 
   setNoteContent(note = {}) {
-    let { title = '', content = '', id = '' } = note;
+    let { id = '' } = note;
     // this.model.title = title;
     // this.model.content = content;
     this.note_id = id;
