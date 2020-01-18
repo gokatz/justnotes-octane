@@ -1,18 +1,15 @@
 <TopBar> 
-  <span {{on "click" this.saveAndAddNew}}>
+  <span {{on "click" this.saveAndAddNew}} role="button">
     {{svg-jar "plus-circle" class="text-teal-400 h-5 ml-3"}}
   </span>
-  <span {{on "click" (fn this.deleteNote this.note_id)}}>
+  <span {{on "click" (fn this.deleteNote this.note_id)}}  role="button">
     {{svg-jar "trash" class="text-gray-700 h-5 ml-3"}}
   </span>
   {{!-- {{svg-jar "save" class="text-gray-700 h-5 ml-3"}} --}}
   {{svg-jar "more-vertical" class="text-gray-700 h-5 ml-3"}}
 </TopBar>
 
-<div
-  class="fixed hidden md:block"
-  style="right: 1em; top: 2em"
->
+<div class="sidenav fixed hidden md:block">
   <Icon
     @icon="plus"
     @class="h-10 w-10 mb-4"

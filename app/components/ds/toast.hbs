@@ -7,7 +7,7 @@
         </span>
 
         {{#unless this.autoclear}}
-          <span {{on "click" this.meta.clearToast}}>
+          <span {{on "click" this.meta.clearToast}} role="button">
             {{svg-jar "close" class="cursor-pointer ml-3"}}
           </span>
         {{/unless}}
