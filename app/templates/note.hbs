@@ -6,7 +6,9 @@
     {{svg-jar "trash" class="text-gray-700 h-5 ml-3"}}
   </span>
   {{!-- {{svg-jar "save" class="text-gray-700 h-5 ml-3"}} --}}
-  {{svg-jar "more-vertical" class="text-gray-700 h-5 ml-3"}}
+  <span {{on "click" this.toggleSlider}}  role="button">
+    {{svg-jar "more-vertical" class="text-gray-700 h-5 ml-3"}}
+  </span>
 </TopBar>
 
 <div class="sidenav fixed hidden md:block">
@@ -63,3 +65,5 @@
     @onNoteSelection={{this.handleNoteSelection}}
   />
 </div>
+
+<SliderMenu @toggleSlider={{this.toggleSlider}} @canShowSlider={{this.canShowSlider}} /> 

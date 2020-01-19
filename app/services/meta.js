@@ -15,7 +15,6 @@ export default class MetaService extends Service {
 
   @tracked toastMsg = '';
   @tracked toastOptions = {};
-  @tracked isSliderMenuOpen = false;
   @tracked isSideBarOpen = false;
   @tracked canShowConfirm = false;
   @tracked confirmOptions = {};
@@ -44,11 +43,6 @@ export default class MetaService extends Service {
   @action 
   clearToast() {
     this.toastMsg = '';
-  }
-
-  @action 
-  toggleSlider() {
-    this.isSliderMenuOpen = !this.isSliderMenuOpen;
   }
 
   @action 

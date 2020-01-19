@@ -109,3 +109,13 @@
   right: 1em;
   top: 2em;
 }
+
+.slider {
+  bottom: -15rem; // arbitrary number
+  margin: 1em;
+  transition: bottom 0.4s;
+}
+
+.slider.open {
+  bottom: 0;
+}

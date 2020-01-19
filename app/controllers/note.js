@@ -15,7 +15,9 @@ export default class NoteController extends Controller {
   notes;
 
   queryParams = ['note_id'];
+
   @tracked note_id = '';
+  @tracked canShowSlider = false;
 
   @action
   async saveCurrentNote({ allowNoteRemoval = false } = {}) {
@@ -187,5 +189,10 @@ export default class NoteController extends Controller {
     // this.model.title = title;
     // this.model.content = content;
     this.note_id = id;
+  }
+
+  @action
+  toggleSlider() {
+    this.canShowSlider = !this.canShowSlider;
   }
 }

@@ -1,0 +1,20 @@
+<div class="fixed slider shadow bg-teal-100 p-3 right-0 left-0 {{if @canShowSlider 'open'}}">
+  <div class="flex justify-around">
+    {{#each this.menus as |menu|}}
+      <div
+        class="text-xs p-2 inline-block text-center"
+        onClick={{menu.action}}
+      >
+        <Icon
+          @icon={{menu.icon}}
+          @class="rounded-lg inline slider-menu-icon"
+        />
+        <div class="mt-2">{{menu.title}}</div>
+      </div>
+    {{/each}}
+  </div>
+
+  <div class="text-center mt-4" {{on "click" @toggleSlider}} role="button">
+    {{svg-jar "chevron-down" class="inline text-gray-600"}}
+  </div>
+</div>
