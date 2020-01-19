@@ -1,6 +1,11 @@
 <div 
+  class="fixed bg-black top-0 bottom-0 right-0 left-0 opacity-25 {{if this.meta.isSideBarOpen 'block' 'hidden'}}"
+  {{on "click" this.onClickOutside}}
+> </div>
+
+<div 
   class="fixed slider-menu bg-gray-100 shadow-md p-4 top-0 {{if this.meta.isSideBarOpen 'open'}}"
-  {{click-outside this.onClickOutside}}
+  {{!-- {{click-outside this.onClickOutside}} --}}
 >
   <div>
     <LinkTo @route="application">

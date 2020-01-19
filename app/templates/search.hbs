@@ -41,6 +41,10 @@
       {{/each}}
     </div>
 
+    <div class="text-center mt-6">
+      <span class="text-blue-400 cursor-pointer" {{on "click" this.loadMore}} role="button"> Load more notes </span>
+    </div>
+
   {{else}}
     <p class="text-center mt-10 italic text-gray-600">No results found!</p>
   {{/if}}

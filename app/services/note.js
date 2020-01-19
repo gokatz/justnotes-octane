@@ -11,28 +11,27 @@ export default class NoteService extends Service {
 
   OPERATION_DEBOUNCE = 500;
 
-  @task(function*(searchQuery = '') {
+  @task(function*(searchQuery = '', options = {}) {
 
     yield timeout(this.OPERATION_DEBOUNCE);
 
-    let params = {}
+    // Param construction
+    options.page = options.page || 1;
+    options.per_page = options.per_page || 30;
+    let params = options;
     searchQuery = searchQuery.trim()
     if (searchQuery) {
       params.search_text = searchQuery;
     }
-    let recentNotes = yield this.getNotes(params);
-    this.notes = recentNotes;
-  }).restartable()
-  fetchNotes;
-
-  async getNotes(params = {}) {
-    params.per_page = 30;
-    params.page = 1;
-    let { data } = await this.store.makeRequest('/note', {
+    
+    // Actual API Call
+    let { data } = yield this.store.makeRequest('/note', {
       params
     });
-    return data;
-  }
+    this.notes = data;
+  
+  }).restartable()
+  fetchNotes;
 
   async getNote(noteId) {
     if (this.fetchNotes.isRunning || !this.fetchNotes.lastSuccessful) {

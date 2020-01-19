@@ -67,7 +67,11 @@ export default class SidebarComponent extends Component {
 
   @action
   logoutUser() {
-    this.user.logoutAndRedirectToSignIn();
-    this.meta.toggleSideBar();
+    this.meta.showConfirm({
+      message: 'Are you sure want to logout?'
+    }).then(() => {
+      this.user.logoutAndRedirectToSignIn();
+      this.meta.toggleSideBar();  
+    })
   }
 }

@@ -5,9 +5,20 @@ export default class SearchRoute extends Route {
 
   @service('note') noteStore;
 
+  queryParams = {
+    page: {
+      refreshModel: true
+    },
+    per_page: {
+      refreshModel: true
+    }
+  }
+
   model(params = {}) {
-    let { search_term } = params;
-    return this.noteStore.fetchNotes.perform(search_term);
+    let { search_term, page = 1, per_page = 30 } = params;
+    return this.noteStore.fetchNotes.perform(search_term, {
+      page, per_page
+    });
   }
 
   resetController(controller, isExiting) {
