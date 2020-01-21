@@ -28,6 +28,12 @@
   </Modal>
 {{/if}}
 
+{{#if this.meta.canShowHelp}}
+  <Modal @modalClass="help-modal">
+    <Help />
+  </Modal>
+{{/if}}
+
 {{#if this.meta.canShowConfirm}}
   <Modal>
     <div class="text-center">

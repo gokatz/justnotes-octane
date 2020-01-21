@@ -38,16 +38,16 @@ export default class SidebarComponent extends Component {
       action: this.openProfile,
       icon: 'user'
     },
-    {
-      id: 'settings',
-      title: 'Settings',
-      action: this.gotoPage,
-      icon: 'settings'
-    },
+    // {
+    //   id: 'settings',
+    //   title: 'Settings',
+    //   action: this.gotoPage,
+    //   icon: 'settings'
+    // },
     {
       id: 'help',
       title: 'Help',
-      action: this.gotoPage,
+      action: this.openHelp,
       icon: 'help'
     }
   ];
@@ -78,6 +78,12 @@ export default class SidebarComponent extends Component {
   @action
   openProfile() {
     this.user.toggleProfile();
+    this.meta.toggleSideBar();  
+  }
+
+  @action
+  openHelp() {
+    this.meta.toggleHelp();
     this.meta.toggleSideBar();  
   }
 }

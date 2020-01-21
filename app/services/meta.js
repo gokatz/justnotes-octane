@@ -17,6 +17,7 @@ export default class MetaService extends Service {
   @tracked toastOptions = {};
   @tracked isSideBarOpen = false;
   @tracked canShowConfirm = false;
+  @tracked canShowHelp = true;
   @tracked confirmOptions = {};
 
   @service router;
@@ -48,6 +49,11 @@ export default class MetaService extends Service {
   @action 
   toggleSideBar() {
     this.isSideBarOpen = !this.isSideBarOpen;
+  }
+
+  @action 
+  toggleHelp() {
+    this.canShowHelp = !this.canShowHelp;
   }
 
   @action

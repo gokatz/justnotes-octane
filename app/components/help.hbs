@@ -1,0 +1,16 @@
+<h2 class="text-center">FAQs</h2>
+
+<div class="mt-4">
+  <div class="overflow-y-auto" style="height: 75vh;">
+    {{#each this.faqs as |faq|}}
+      <div class="border-b mb-3 pb-3">
+        <div class="font-bold mb-2"> {{faq.question}} </div>
+        <div> {{faq.answer}} </div>
+      </div>
+    {{/each}}
+  </div>
+
+  <div class="text-center">
+    <Button @type="secondary" @size="sm" class="cursor-pointer" {{on "click" this.meta.toggleHelp}}>Close</Button>
+  </div>
+</div>
