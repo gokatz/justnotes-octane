@@ -6,7 +6,8 @@ let sizeClass = {
 }
 
 let typeClass = {
-  'secondary': 'text-blue-500'
+  'secondary': 'text-blue-500',
+  'danger': 'bg-red-400 text-white'
 }
 
 export default class ButtonComponent extends Component {

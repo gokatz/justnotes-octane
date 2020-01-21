@@ -22,12 +22,20 @@
 
 <Sidebar />
 
+{{#if this.user.canShowProfile}}
+  <Modal>
+    <Profile />
+  </Modal>
+{{/if}}
+
 {{#if this.meta.canShowConfirm}}
   <Modal>
-    {{this.meta.confirmOptions.message}}
-    <div class="mt-5">
-      <Button @size="sm" {{on "click" this.meta.confirmOptions.onConfirm}}> {{this.meta.confirmOptions.primaryBtnLabel}} </Button>
-      <Button @size="sm" @type="secondary" {{on "click" this.meta.confirmOptions.onReject}}> {{this.meta.confirmOptions.secBtnLabel}} </Button>
+    <div class="text-center">
+      {{this.meta.confirmOptions.message}}
+      <div class="mt-5">
+        <Button @size="sm" {{on "click" this.meta.confirmOptions.onConfirm}}> {{this.meta.confirmOptions.primaryBtnLabel}} </Button>
+        <Button @size="sm" @type="secondary" {{on "click" this.meta.confirmOptions.onReject}}> {{this.meta.confirmOptions.secBtnLabel}} </Button>
+      </div>
     </div>
   </Modal>
 {{/if}}

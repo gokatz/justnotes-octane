@@ -35,7 +35,7 @@ export default class SidebarComponent extends Component {
     {
       id: 'use',
       title: 'Profile',
-      action: this.gotoPage,
+      action: this.openProfile,
       icon: 'user'
     },
     {
@@ -73,5 +73,11 @@ export default class SidebarComponent extends Component {
       this.user.logoutAndRedirectToSignIn();
       this.meta.toggleSideBar();  
     })
+  }
+
+  @action
+  openProfile() {
+    this.user.toggleProfile();
+    this.meta.toggleSideBar();  
   }
 }

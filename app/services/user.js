@@ -9,9 +9,11 @@ export default class UserService extends Service {
 
   @service router;
   @service store;
+  @service meta;
 
   @tracked email;
   @tracked name;
+  @tracked canShowProfile = false;
 
   @bool('email')
   isAuthenticated;
@@ -56,4 +58,18 @@ export default class UserService extends Service {
     }
   })
   authenticateUser;
+
+  @action
+  toggleProfile() {
+    this.canShowProfile = !this.canShowProfile;
+  }
+
+  @action
+  deleteAccount() {
+    this.meta.showConfirm({
+      message: 'Are you sure? If you delete your account, you cannot get yur access back. Hope you know what you are doing here!'
+    }).then(() => {
+      alert('Account Deleted');
+    });
+  }
 }
