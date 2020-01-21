@@ -9,11 +9,14 @@ export default class NoteService extends Service {
   @tracked notes = [];
   @service store;
 
-  OPERATION_DEBOUNCE = 500;
+  OPERATION_DEBOUNCE = 300;
 
   @task(function*(searchQuery = '', options = {}) {
 
-    yield timeout(this.OPERATION_DEBOUNCE);
+    let debounceTimeout = options.debounceTimeout || this.OPERATION_DEBOUNCE;
+    yield timeout(debounceTimeout);
+
+    delete options.debounceTimeout;
 
     // Param construction
     options.page = options.page || 1;
@@ -25,10 +28,10 @@ export default class NoteService extends Service {
     }
     
     // Actual API Call
-    let { data } = yield this.store.makeRequest('/note', {
+    let { data = {} } = yield this.store.makeRequest('/note', {
       params
     });
-    this.notes = data;
+    this.notes = data.notes;
   
   }).restartable()
   fetchNotes;
