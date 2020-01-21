@@ -17,7 +17,7 @@ export default class MetaService extends Service {
   @tracked toastOptions = {};
   @tracked isSideBarOpen = false;
   @tracked canShowConfirm = false;
-  @tracked canShowHelp = true;
+  @tracked canShowHelp = false;
   @tracked confirmOptions = {};
 
   @service router;
