@@ -5,12 +5,12 @@
     {{#each this.faqs as |faq|}}
       <div class="border-b mb-3 pb-3">
         <div class="font-bold mb-2"> {{faq.question}} </div>
-        <div> {{faq.answer}} </div>
+        <div> {{{faq.answer}}} </div>
       </div>
     {{/each}}
   </div>
 
-  <div class="text-center">
+  <div class="text-center mt-2">
     <Button @type="secondary" @size="sm" class="cursor-pointer" {{on "click" this.meta.toggleHelp}}>Close</Button>
   </div>
 </div>
