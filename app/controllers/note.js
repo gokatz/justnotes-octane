@@ -29,21 +29,67 @@ export default class NoteController extends Controller {
       content
     };
 
-    return this.updateOrCreateNoteTask.perform(note_id, params, allowNoteRemoval)
-      .then(savedNote => {
-        if (this.isNewNote) {
-          // Need to update the id to new one if this is a new note
-          let { id } = savedNote || {};
-          this.note_id = id;
-        }
-      })
-      .catch((error) => {
-        if (!didCancel(error)) {
-          this.meta.showToast.error('Oops. I cannot save your note. Try again in sometime');
-          throw error;
-        }
+    let isNewNote = this.isNewNote;
 
-      });
+    let isNoteRemoval =  !title && !content;
+
+    if (isNoteRemoval && !allowNoteRemoval) {      
+      this.handleNoteContentRemoval({ allowNoteRemoval: false });
+      return;
+    }
+
+    let savedNote;
+    try {
+      if (isNewNote) {
+        savedNote = await this.createNoteTask.perform(params);
+        // Need to update the id to new one if this is a new note
+        let { id } = savedNote || {};
+        this.note_id = id;
+      } else {
+        savedNote = await this.updateNoteTask.perform(note_id, params);
+      }
+
+
+      // TODO: need to get saved data from server @varun
+      Object.assign(savedNote, params);
+      // Update the notes list
+      // We will not wait for the response as it be handled in the background
+      this.noteStore.updateNotesList(savedNote, { operation: isNoteRemoval ? 'delete' : 'update' });
+
+      return savedNote;
+    } catch (error) {
+      if (!didCancel(error)) {
+        this.meta.showToast.error('Oops. Error while saving this note. Try again in sometime');
+        throw error;
+      }
+      // TODO: Retry Saving
+      throw error;
+    }
+  }
+
+  @task(function* (note_id, params) {
+    yield timeout(800);
+
+    let savedNote = yield this.updateNote(note_id, params);
+    return savedNote;
+  }).restartable()
+  updateNoteTask;
+
+  @task(function*(params) {
+    yield timeout(300);
+
+    let savedNote = yield this.createNote(params);
+    // if (this.isNewNote) {
+    //   // Need to update the id to new one if this is a new note
+    //   let { id } = savedNote || {};
+    //   this.note_id = id;
+    // }    
+    return savedNote;
+  }).drop()
+  createNoteTask;
+
+  get isNoteSaving() {
+    return this.createNoteTask.isRunning || this.updateNoteTask.isRunning;
   }
 
   get isEmptyNote() {
@@ -91,44 +137,6 @@ export default class NoteController extends Controller {
     }
 
   }
-
-  @task(function*(noteId = '', params = {}, allowNoteRemoval) {
-
-    let isNewNote = this.isNewNote;
-
-    yield timeout(isNewNote ? 300 : 800);
-
-    let { title, content } = params;
-    let isNoteRemoval =  !title && !content;
-
-    if (isNoteRemoval && !allowNoteRemoval) {      
-      this.handleNoteContentRemoval({ allowNoteRemoval: false });
-      return;
-    }
-
-    let savedNote;
-    try {
-      if (isNewNote) {
-        savedNote = yield this.createNote(params);
-      } else {
-        savedNote = yield this.updateNote(noteId, params);
-      }
-
-      // TODO: need to get saved data from server @varun
-      Object.assign(savedNote, params);
-      // Update the notes list
-      // We will not wait for the response as it be handled in the background
-      this.noteStore.updateNotesList(savedNote, { operation: isNoteRemoval ? 'delete' : 'update' });
-
-      return savedNote;
-    } catch (error) {
-      // TODO: set Notification about errors
-      // Retry Saving
-      throw error;      
-    }
-
-  }).restartable()
-  updateOrCreateNoteTask;
 
   async createNote(payload) {
     let { data } = await this.store.makeRequest('/note', {

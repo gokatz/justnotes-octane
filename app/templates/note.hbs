@@ -41,7 +41,7 @@
         @value={{@model.title}}
         {{on "keyup" this.saveCurrentNote}}
       />
-      <SavingIndicator @isSaving={{this.updateOrCreateNoteTask.isRunning}} />
+      <SavingIndicator @isSaving={{this.isNoteSaving}} />
     </div>
 
     <div class="mt-4">

@@ -11,9 +11,15 @@ export default class SearchRoute extends Route {
     }
   }
 
-  async model(params = {}) {
-    let { search_term, page = 1, per_page = 30 } = params;
+  model(params = {}) {
+    // In order not to make the page to wait for initial data load!
+    return {
+      notes: this.fetchNotes(params)
+    }
+  }
 
+  async fetchNotes(params = {}) {
+    let { search_term, page = 1, per_page = 30 } = params;
     try {
       await this.noteStore.fetchNotes.perform(search_term, {
         page, per_page
