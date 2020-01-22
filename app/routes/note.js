@@ -12,6 +12,10 @@ export default class NoteRoute extends Route {
   @service('note') noteStore;
   @service meta;
 
+  activate() {
+    this.noteStore.fetchNotes.perform();
+  }
+
   async model(params = {}) {
     let { note_id } = params;
     if (note_id) {
@@ -29,9 +33,9 @@ export default class NoteRoute extends Route {
     };
   }
 
-  setupController() {
-    super.setupController(...arguments);
-    // Lazily fetch notes;
-    this.noteStore.fetchNotes.perform();
-  }
+  // setupController() {
+  //   super.setupController(...arguments);
+  //   // Lazily fetch notes;
+  //   this.noteStore.initialNoteFetch.perform();
+  // }
 }

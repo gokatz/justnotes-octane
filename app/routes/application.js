@@ -26,10 +26,6 @@ export default class ApplicationRoute extends Route {
   setupController() {
     super.setupController(...arguments);
 
-    if (this.user.isAuthenticated) {
-      this.noteStore.fetchNotes.perform();
-    }
-
     this.router.on('routeWillChange', (transition) => {      
       if (!transition.to.find(route => route.name === this.router.currentRouteName)) {
         this.meta.clearToast();
