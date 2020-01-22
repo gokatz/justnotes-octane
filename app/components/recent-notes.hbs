@@ -36,4 +36,11 @@
 
     {{!-- {{/if}} --}}
   </div>
+  {{#if this.notes.length}}
+    <div class="text-center mt-6">
+      <LinkTo @route="search" @query={{hash search_term=""}} class="text-blue-400 cursor-pointer text-xs">
+        View All notes
+      </LinkTo>
+    </div>
+  {{/if}}
 </div>

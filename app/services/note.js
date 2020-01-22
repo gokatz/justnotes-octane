@@ -6,8 +6,10 @@ import { task, timeout } from 'ember-concurrency';
 import { setProperties } from '@ember/object';
 
 export default class NoteService extends Service {
-  @tracked notes = [];
+
   @service store;
+  
+  @tracked notes = [];
 
   OPERATION_DEBOUNCE = 300;
 
@@ -21,6 +23,7 @@ export default class NoteService extends Service {
     // Param construction
     options.page = options.page || 1;
     options.per_page = options.per_page || 30;
+
     let params = options;
     searchQuery = searchQuery.trim()
     if (searchQuery) {
@@ -31,7 +34,13 @@ export default class NoteService extends Service {
     let { data = {} } = yield this.store.makeRequest('/note', {
       params
     });
-    this.notes = data.notes;
+
+    let notes = data.notes;
+    if (options.page > 1) {
+      notes = this.notes.concat(notes);
+    }
+
+    this.notes = notes;
   
   }).restartable()
   fetchNotes;

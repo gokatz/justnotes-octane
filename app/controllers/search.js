@@ -6,7 +6,7 @@ import { tracked } from '@glimmer/tracking';
 export default class SearchController extends Controller {
   @service('note') noteStore;
 
-  queryParams = ['search_term', 'page', 'per_page'];
+  queryParams = ['search_term', 'per_page'];
   
   @tracked search_term = '';
   @tracked page = 1;
@@ -19,6 +19,9 @@ export default class SearchController extends Controller {
 
   @action
   loadMore() {
-    this.per_page = this.per_page + 20;
+    this.page = ++this.page;
+    this.noteStore.fetchNotes.perform(this.search_term, {
+      page: this.page
+    });
   }
 }

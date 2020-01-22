@@ -42,7 +42,12 @@
     </div>
 
     <div class="text-center mt-6">
-      <span class="text-blue-400 cursor-pointer" {{on "click" this.loadMore}} role="button"> Load more notes </span>
+      <span class="text-blue-400 cursor-pointer" {{on "click" this.loadMore}} role="button">
+        {{#if this.noteStore.fetchNotes.isRunning}}
+          <Loader class="mr-1" />
+        {{/if}}
+        Load more notes
+      </span>
     </div>
 
   {{else}}
