@@ -6,6 +6,15 @@
   </LinkTo>
 </TopBar>
 
+<div class="sidenav fixed hidden md:block">
+  <LinkTo @route="note" @query={{hash note_id=""}}>
+    <Icon
+      @icon="plus"
+      @class="h-10 w-10 mb-4"
+    />
+  </LinkTo>
+</div>
+
 <div>
 
   <Input
@@ -41,17 +50,19 @@
       {{/each}}
     </div>
 
-    <div class="text-center mt-6">
-      <span class="text-blue-400 cursor-pointer" {{on "click" this.loadMore}} role="button">
-        {{#if this.noteStore.fetchNotes.isRunning}}
-          <Loader class="mr-1" />
-        {{/if}}
-        Load more notes
-      </span>
-    </div>
+    {{#if this.noteStore.hasMorePage}}
+      <div class="text-center mt-6">
+        <span class="text-blue-400 cursor-pointer" {{on "click" this.loadMore}} role="button">
+          {{#if this.noteStore.fetchNotes.isRunning}}
+            <Loader class="mr-1" />
+          {{/if}}
+          Load more notes
+        </span>
+      </div>
+    {{/if}}
 
   {{else}}
-    <p class="text-center mt-10 italic text-gray-600">No results found!</p>
+    <p class="text-center mt-10 italic text-gray-600">No Notes found!</p>
   {{/if}}
 
 

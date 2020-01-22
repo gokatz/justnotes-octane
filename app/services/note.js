@@ -10,6 +10,7 @@ export default class NoteService extends Service {
   @service store;
   
   @tracked notes = [];
+  @tracked hasMorePage = true;
 
   OPERATION_DEBOUNCE = 300;
 
@@ -40,6 +41,7 @@ export default class NoteService extends Service {
       notes = this.notes.concat(notes);
     }
 
+    this.hasMorePage = data.has_more_pages;
     this.notes = notes;
   
   }).restartable()
@@ -74,5 +76,6 @@ export default class NoteService extends Service {
 
     // Adding new Note
     this.notes.unshift(noteData);
+    this.notes = this.notes; // To rerender things
   }
 }

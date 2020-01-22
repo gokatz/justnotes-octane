@@ -6,9 +6,9 @@
     {{svg-jar "trash" class="text-gray-700 h-5 ml-3"}}
   </span>
   {{!-- {{svg-jar "save" class="text-gray-700 h-5 ml-3"}} --}}
-  <span {{on "click" this.toggleSlider}}  role="button">
+  {{!-- <span {{on "click" this.toggleSlider}}  role="button">
     {{svg-jar "more-vertical" class="text-gray-700 h-5 ml-3"}}
-  </span>
+  </span> --}}
 </TopBar>
 
 <div class="sidenav fixed hidden md:block">
@@ -41,7 +41,7 @@
         @value={{@model.title}}
         {{on "keyup" this.saveCurrentNote}}
       />
-      <SavingIndicator @isSaving={{this.isNoteSaving}} />
+      <SavingIndicator @isSaving={{this.updateOrCreateNoteTask.isRunning}} />
     </div>
 
     <div class="mt-4">

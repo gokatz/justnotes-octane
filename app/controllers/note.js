@@ -93,9 +93,10 @@ export default class NoteController extends Controller {
 
   @task(function*(noteId = '', params = {}, allowNoteRemoval) {
 
-    yield timeout(this.noteStore.OPERATION_DEBOUNCE);
-
     let isNewNote = this.isNewNote;
+
+    yield timeout(isNewNote ? 300 : 800);
+
     let { title, content } = params;
     let isNoteRemoval =  !title && !content;
 
@@ -155,7 +156,8 @@ export default class NoteController extends Controller {
         method: 'DELETE'
       });
       this.noteStore.updateNotesList({ id: noteId }, { operation: 'delete' });
-      this.meta.showToast('Note deleted successfully and moved to Archive if you need to retrieve 😉');
+      // this.meta.showToast('Note deleted successfully and moved to Archive if you need to retrieve 😉');
+      this.meta.showToast('Note deleted successfully deleted');
       this.setNoteContent();
     } catch (error) {
       this.meta.showToast.error('Error white deleting the note. Try after sometime');

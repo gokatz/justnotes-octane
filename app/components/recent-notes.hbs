@@ -24,7 +24,7 @@
       {{#each this.notes as |note|}}
         <PreviewTile
           @note={{note}}
-          @isActive={{eq (concat "" note.id) @noteId}}
+          @isActive={{eq (concat "" note.id) (concat "" @noteId)}}
           class="w-2/5"
           @handleNoteSelection={{fn @onNoteSelection note}}
         />

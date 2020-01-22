@@ -2,7 +2,7 @@
   <div class="text-xl">Hey, {{this.user.name}}</div> 
   <div class="text-lg text-gray-500 mt-3"> {{this.user.email}}  </div>
   <div class="mt-5">
-    <Button @size="sm" @type="danger" {{on "click" this.user.deleteAccount}}> Delete My Account </Button>
+    {{!-- <Button @size="sm" @type="danger" {{on "click" this.user.deleteAccount}}> Delete My Account </Button> --}}
     <Button @size="sm" @type="secondary" {{on "click" this.user.toggleProfile}}> Close </Button>
   </div>
 </div>
