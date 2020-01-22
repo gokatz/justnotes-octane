@@ -18,7 +18,7 @@
     </LinkTo>
   </div>
 
-  <div class="mt-3 relative">
+  <div class="mt-3">
 
     {{#each this.menus as |menu|}}
       {{#if (eq menu.id "divider")}}
@@ -34,12 +34,11 @@
 
   </div>
 
-
   <Sidebar::MenuItem
     @icon="log-out"
     @title="Log out"
     @onClick={{this.logoutUser}}
-    style="bottom: 0"
-    class="absolute mb-2"
+    class="fixed mb-2 bottom-0"
   />
+
 </div>
