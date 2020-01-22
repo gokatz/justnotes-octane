@@ -68,8 +68,9 @@ export default class NoteController extends Controller {
       }
     }
 
-    this.meta.showToast('New note created successfully!');
+    this.meta.showToast('Saving the current note...');
     await this.saveCurrentNote(true); // allowNoteRemoval
+    this.meta.showToast('New note created successfully!');
     this.setNoteContent(); // clear out the note content
   }
 
