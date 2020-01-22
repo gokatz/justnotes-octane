@@ -45,6 +45,7 @@ export default class NoteController extends Controller {
         // Need to update the id to new one if this is a new note
         let { id } = savedNote || {};
         this.note_id = id;
+        params.content = this.model.content;
       } else {
         savedNote = await this.updateNoteTask.perform(note_id, params);
       }
