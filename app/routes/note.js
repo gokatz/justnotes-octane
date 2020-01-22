@@ -29,10 +29,9 @@ export default class NoteRoute extends Route {
     };
   }
 
-  // setupController() {
-  //   super.setupController(...arguments);
-  //   // super(...arguments);
-  //   // Lazily fetch notes;
-  //   this.noteStore.fetchNotes.perform();
-  // }
+  setupController() {
+    super.setupController(...arguments);
+    // Lazily fetch notes;
+    this.noteStore.fetchNotes.perform();
+  }
 }
