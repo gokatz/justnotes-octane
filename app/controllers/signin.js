@@ -11,6 +11,7 @@ export default class SigninController extends Controller {
 
   @service meta;
   @service store;
+  @service user;
 
   @task(function* () {
 
@@ -33,8 +34,7 @@ export default class SigninController extends Controller {
       });
 
       let { data: { token } = {} } = response || {};
-      document.cookie = `justpass=${token}`;
-      // this.transitionToRoute('application');
+      this.user.saveToken(token);
       window.location.reload();
     } catch (error) {
       let msg =

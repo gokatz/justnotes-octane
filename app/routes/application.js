@@ -38,6 +38,10 @@ export default class ApplicationRoute extends Route {
     let isAuthenticated = this.user.isAuthenticated;
     let isProtectedPage = this.meta.isProtectedPage(targetName);
 
+    if (targetName.includes('oauth')) {
+      return;
+    }
+
     if (isAuthenticated && !isProtectedPage) {
       this.transitionTo('application');
     }

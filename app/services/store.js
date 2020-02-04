@@ -6,8 +6,8 @@ export default class StoreService extends Service {
   async makeRequest(url, options = {}) {
     let rootUrl = 'http://varun-3902.csez.zohocorpin.com:8080';
     // rootUrl = 'http://varun-3902:8080';
-    rootUrl = 'http://localhost:8080';
-    rootUrl = 'http://justnote.westus2.cloudapp.azure.com';
+    // rootUrl = 'http://localhost:80';
+    // rootUrl = 'http://justnote.westus2.cloudapp.azure.com';
     rootUrl = 'https://techprojects.xyz:8443';
     let { method = 'get', data = {}, params = {} } = options;
     url = rootUrl + url;
@@ -26,10 +26,13 @@ export default class StoreService extends Service {
     let fetchOptions = {
       method,
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${accessToken}`
+        'Content-Type': 'application/json'
       }
     };
+    
+    if (accessToken && accessToken !== 'undefined') {
+      fetchOptions.headers.Authorization = `Bearer ${accessToken}`
+    }
 
     if (method && method !== 'get') {
       fetchOptions.body = JSON.stringify(data)
