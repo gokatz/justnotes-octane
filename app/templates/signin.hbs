@@ -29,5 +29,16 @@
         Sign In
       </Button>
     </div>
+
+    <div>
+      Or 
+    </div>
+
+    <TpAuth as |authHandler|>
+      Sign in using 
+      <span class="link" {{on "click" authHandler.openGoogleOAuth}} role="button">
+        Google Account
+      </span>
+    </TpAuth>
   </FormContainer>
 </div>

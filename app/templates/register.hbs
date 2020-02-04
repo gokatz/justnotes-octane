@@ -33,5 +33,16 @@
         Create My Notebook
       </Button>
     </div>
+
+    <div>
+      Or 
+    </div>
+    
+    <TpAuth as |authHandler|>
+      Sign up using 
+      <span class="link" {{on "click" authHandler.openGoogleOAuth}} role="button">
+        Google Account
+      </span>
+    </TpAuth>
   </FormContainer>
 </div>

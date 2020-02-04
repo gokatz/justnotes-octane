@@ -4,6 +4,7 @@ import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import { bool } from '@ember/object/computed';
 import { task } from 'ember-concurrency';
+import { setCookie } from '../utils';
 
 export default class UserService extends Service {
 
@@ -20,9 +21,12 @@ export default class UserService extends Service {
 
   @action 
   logoutAndRedirectToSignIn() {
-    window.document.cookie = 'jsessionid=;';
-    window.document.cookie = 'justpass=;';
+    this.logout();
     this.router.transitionTo('/signin');
+  }
+
+  logout() {
+    setCookie('justpass', '');
   }
 
   // async handleAuth(transition) {
@@ -71,5 +75,10 @@ export default class UserService extends Service {
     }).then(() => {
       alert('Account Deleted');
     });
+  }
+
+  @action
+  saveToken(token) {
+    token && setCookie('justpass', token);
   }
 }
