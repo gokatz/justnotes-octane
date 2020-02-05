@@ -19,6 +19,6 @@ export default class HelpComponent extends Component {
     answer: 'File an issue here - <a href="https://github.com/gokatz/justnotes-octane/issues" class="text-blue-400 cursor-pointer" target="_blank">https://github.com/gokatz/justnotes-octane/issues</a>. We will try to address as soon as possible'
   }, {
     question: 'How to contact support?',
-    answer: 'This JustNotes instance is maintained entirely by a representative from your organization. For any support, contact the administrator of your organization.'
+    answer: 'This Crosa Note instance is maintained entirely by a representative from your organization. For any support, contact the administrator of your organization.'
   }]
 }
