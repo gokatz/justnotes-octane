@@ -1,8 +1,6 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
-
-// console.log(Route);
- 
+import { scheduleOnce, later } from '@ember/runloop';
 
 export default class ApplicationRoute extends Route {
 
@@ -31,6 +29,16 @@ export default class ApplicationRoute extends Route {
         this.meta.clearToast();
       }
     })
+
+    function removeSplash() {
+      let splashScreen = document.getElementById('splash');
+      splashScreen.classList.add('_fade');
+      later(() => {
+        splashScreen.remove();
+      }, 300);
+    }
+    
+    scheduleOnce('afterRender', removeSplash);
   }
 
   async handleAuth(transition) {

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>JustNotes</title>
+    <title>Notes by Crosa Apps</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -15,9 +15,44 @@
     <link integrity="" rel="stylesheet" href="{{rootURL}}assets/justnotes-octane.css">
 
     {{content-for "head-footer"}}
+
+    <style>
+      ._splash {
+        display: flex;
+        height: 100vh;
+        width: 100vw;
+        justify-content: center;
+        align-items: center;
+        transition: 0.3s opacity;
+      }
+      ._splash ._container {
+        text-align: center;
+      }
+      ._splash ._logo {
+        height: 6rem;
+        display: inline-block;
+        margin-bottom: 1em;
+      }
+      ._splash._fade {
+        opacity: 0;
+      }
+    </style>
   </head>
   <body>
     {{content-for "body"}}
+
+    <div class="_splash" id="splash">
+      <div class="_container">
+        <img
+          src="/lightweight.png"
+          class="_logo"
+          alt="logo"
+        />
+        <p>
+          Binding Crosa Notes just for you. Hold tight..!
+        </p>
+      </div>
+    </div>
 
     <script src="{{rootURL}}assets/vendor.js"></script>
     <script src="{{rootURL}}assets/justnotes-octane.js"></script>

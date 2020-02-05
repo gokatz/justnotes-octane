@@ -22,7 +22,7 @@ export default class OauthRoute extends Route {
       token = data.token;      
     } catch (error) {
       // alert('Error');
-      this.meta.showToast('Error while login you into JustNotes. Please try again');
+      this.meta.showToast('Error while login you into your Crosa Notes account. Please try again');
       this.transitionTo('register');
       throw error;
     }

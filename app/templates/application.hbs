@@ -1,19 +1,11 @@
-
-{{!-- <Head>
-  <title>{title}</title>
-
-</Head> --}}
-
-{{!-- {{#if showNav}}
-  <Navs @handleAddNew={{handleAddNew}} />
-{{/if}} --}}
-
 <div class="flex p-4 sm:p-6">
-  <div class="hidden md:block w-1/12">
-    <Logo class="logo" @onClick={{this.meta.toggleSideBar}} />
-  </div>
+  {{#if this.canShowSideNav}}
+    <div class="hidden md:block w-1/12">
+      <Logo class="logo" @onClick={{this.meta.toggleSideBar}} />
+    </div>
+  {{/if}}
 
-  <div class="w-full md:w-10/12" id="main-content">
+  <div class={{if this.canShowSideNav "w-full md:w-10/12" "w-full"}} id="main-content">
     {{outlet}}
   </div>
 </div>
