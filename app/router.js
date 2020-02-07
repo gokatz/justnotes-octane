@@ -14,4 +14,5 @@ Router.map(function() {
   this.route('signin');
   this.route('register');
   this.route('oauth', { path: '/oauth2/:provider' });
+  this.route('archive');
 });
