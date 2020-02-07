@@ -4,7 +4,7 @@
 <div 
   class="fixed modal transition-opacity duration-100 ease-in {{if this.startAnimate 'opacity-1' 'opacity-0'}} {{@modalClass}}"
 >
-  <div class="content shadow bg-white mx-auto p-5 rounded text-sm">
+  <div class="fixed right-0 left-0 content shadow bg-white mx-auto p-5 rounded text-sm sm:w-3/12 w-11/12 {{@modalContentClass}}">
     {{yield}}
   </div>
 </div>

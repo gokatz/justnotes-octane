@@ -1,0 +1,83 @@
+<TopBar> 
+  <LinkTo @route="note" @query={{hash note_id=""}} class="flex text-teal-400 items-center">
+    {{svg-jar "plus-circle" class="h-5 mr-1"}}
+    Create New Note
+  </LinkTo>
+</TopBar>
+
+<div class="sidenav fixed hidden md:block">
+  <LinkTo @route="note" @query={{hash note_id=""}}>
+    <Icon
+      @icon="plus"
+      @class="h-10 w-10 mb-4"
+    />
+  </LinkTo>
+</div>
+
+<div>
+
+  {{#if this.notes.length}}
+
+    <div class="mt-4 flex flex-wrap">
+      {{#each this.notes as |note|}}
+        <PreviewTile
+          @note={{note}}
+          class="w-full sm:w-3/12"
+          @handleNoteSelection={{fn this.showPreview note}}
+        />
+      {{/each}}
+    </div>
+
+    {{#if this.hasMorePage}}
+      <div class="text-center mt-6">
+        <span class="text-blue-400 cursor-pointer" {{on "click" this.loadMore}} role="button">
+          {{#if this.fetchArchives.isRunning}}
+            <Loader class="mr-1" />
+          {{/if}}
+          Load more notes
+        </span>
+      </div>
+    {{/if}}
+
+  {{else}}
+    <p class="text-center mt-10 italic text-gray-600">No notes have been archived so far</p>
+  {{/if}}
+
+</div>
+
+{{#if this.selectedArchive}}
+  <Modal @modalClass="content-modal" @modalContentClass="sm:w-6/12">
+    <div>
+      <div class="text-xl font-bold mb-3 text-center">
+        Preview
+      </div>
+      <div class="text-lg mb-2">
+        {{this.selectedArchive.title}}
+      </div>
+      
+      <div class="whitespace-pre-wrap overflow-auto">{{this.selectedArchive.content}}</div>
+
+      <hr class="my-5">
+      <div>
+        <Button 
+          @size="sm" 
+          @type="danger" 
+          class="mb-1"
+          {{on "click" (fn this.deleteArchive this.selectedArchive)}} 
+          @loading={{this.deleteArchiveTask.isRunning}}
+        >
+          Delete this note permanently 
+        </Button>
+        <Button 
+          @size="sm" 
+          class="mb-1" 
+          {{on "click" (fn this.putBack this.selectedArchive)}}
+          @loading={{this.retrieveTask.isRunning}}
+        > 
+          Retrieve this note
+        </Button>
+        <Button @size="sm" @type="secondary" class="mb-1" {{on "click" this.closePreview}}> close </Button>
+      </div>
+    </div>
+  </Modal>
+{{/if}}

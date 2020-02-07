@@ -21,6 +21,11 @@ export default class NoteRoute extends Route {
     if (note_id) {
       try {
         let note = await this.noteStore.getNote(note_id);
+        if (!note) {
+          throw {
+            error_msg: `cannot find this note (id = ${note_id}) in the system`
+          }
+        }
         return note;  
       } catch (error) {
         let { error_msg = 'Error while fetching the selected note' } = error;

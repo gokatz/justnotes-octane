@@ -23,12 +23,13 @@ export default class SidebarComponent extends Component {
       action: this.gotoPage,
       link: 'search'
     },
-    // {
-    //   id: 'archives',
-    //   title: 'Archives',
-    //   action: this.gotoPage,
-    //   icon: 'archive'
-    // },
+    {
+      id: 'archives',
+      title: 'Archives',
+      action: this.gotoPage,
+      icon: 'archive',
+      link: 'archive'
+    },
     {
       id: 'divider'
     },

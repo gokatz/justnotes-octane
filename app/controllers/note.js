@@ -160,14 +160,14 @@ export default class NoteController extends Controller {
     if (this.isNewNote) {
       return;
     }
-    await this.meta.showConfirm({ message: 'Are you sure to delete this note?' });
+    await this.meta.showConfirm({ message: 'Are you sure to delete this note? If you proceed, this note will be archived' });
     try {
       await this.store.makeRequest(`/note/${noteId}`, {
         method: 'DELETE'
       });
       this.noteStore.updateNotesList({ id: noteId }, { operation: 'delete' });
       // this.meta.showToast('Note deleted successfully and moved to Archive if you need to retrieve 😉');
-      this.meta.showToast('Note deleted successfully deleted');
+      this.meta.showToast('Note deleted successfully moved to archive folder');
       this.setNoteContent();
     } catch (error) {
       this.meta.showToast.error('Error white deleting the note. Try after sometime');
