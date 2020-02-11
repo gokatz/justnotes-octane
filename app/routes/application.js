@@ -24,6 +24,7 @@ export default class ApplicationRoute extends Route {
   setupController() {
     super.setupController(...arguments);
 
+    // This entire section handles the overall app logics
     this.router.on('routeWillChange', (transition) => {      
       if (!transition.to.find(route => route.name === this.router.currentRouteName)) {
         this.meta.clearToast();
@@ -39,6 +40,12 @@ export default class ApplicationRoute extends Route {
     }
     
     scheduleOnce('afterRender', removeSplash);
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker
+        .register('/sw.js')
+        .then(function () { console.log("Service Worker Registered"); });
+    }
   }
 
   async handleAuth(transition) {
