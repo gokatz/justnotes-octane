@@ -8,7 +8,9 @@ export default class StoreService extends Service {
     // rootUrl = 'http://varun-3902:8080';
     // rootUrl = 'http://localhost:80';
     // rootUrl = 'http://justnote.westus2.cloudapp.azure.com';
-    rootUrl = 'https://techprojects.xyz:8443';
+    // rootUrl = 'https://techprojects.xyz:8443';
+    rootUrl = 'https://api.crosa.app:8443';
+
     let { method = 'get', data = {}, params = {} } = options;
     url = rootUrl + url;
 
