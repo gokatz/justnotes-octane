@@ -12,6 +12,10 @@ module.exports = function(defaults) {
       ],
     },
 
+    fingerprint: {
+      exclude: ['images/icons']
+    },
+
     postcssOptions: {
       compile: {
         extension: 'scss',
