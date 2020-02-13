@@ -4,11 +4,7 @@ import { getCookie } from '../utils';
 export default class StoreService extends Service {
 
   async makeRequest(url, options = {}) {
-    let rootUrl = 'http://varun-3902.csez.zohocorpin.com:8080';
-    // rootUrl = 'http://varun-3902:8080';
-    // rootUrl = 'http://localhost:80';
-    // rootUrl = 'http://justnote.westus2.cloudapp.azure.com';
-    // rootUrl = 'https://techprojects.xyz:8443';
+    let rootUrl = 'http://localhost:80';
     rootUrl = 'https://api.crosa.app:8443';
 
     let { method = 'get', data = {}, params = {} } = options;
