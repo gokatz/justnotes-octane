@@ -18,6 +18,7 @@ export default class NoteController extends Controller {
 
   @tracked note_id = '';
   @tracked canShowSlider = false;
+  @tracked lastSavedNote = {};
 
   @action
   async saveCurrentNote({ allowNoteRemoval = false } = {}) {
@@ -38,6 +39,15 @@ export default class NoteController extends Controller {
       return;
     }
 
+    // check if the content has been updated
+    let {
+      title: savedTitle,
+      content: savedContent
+    } = this.lastSavedNote;
+    if (title === savedTitle && content === savedContent) {
+      return;
+    }
+
     let savedNote;
     try {
       if (isNewNote) {
@@ -49,6 +59,7 @@ export default class NoteController extends Controller {
         params.title = this.model.title;
       } else {
         savedNote = await this.updateNoteTask.perform(note_id, params);
+        this.lastSavedNote = savedNote;
       }
 
 
@@ -61,11 +72,12 @@ export default class NoteController extends Controller {
       return savedNote;
     } catch (error) {
       if (!didCancel(error)) {
+        // TODO: Retry save
         this.meta.showToast.error('Oops. Error while saving this note. Try again in sometime');
         throw error;
       }
       // TODO: Retry Saving
-      throw error;
+      // throw error;
     }
   }
 
