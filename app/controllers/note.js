@@ -46,6 +46,7 @@ export default class NoteController extends Controller {
         let { id } = savedNote || {};
         this.note_id = id;
         params.content = this.model.content;
+        params.title = this.model.title;
       } else {
         savedNote = await this.updateNoteTask.perform(note_id, params);
       }
@@ -158,6 +159,7 @@ export default class NoteController extends Controller {
   @action
   async deleteNote(noteId) {
     if (this.isNewNote) {
+      this.meta.showToast('Chill. You don\'t need to delete an empty note');
       return;
     }
     await this.meta.showConfirm({ message: 'Are you sure to delete this note? If you proceed, this note will be archived' });

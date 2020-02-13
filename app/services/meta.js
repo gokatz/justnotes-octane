@@ -28,7 +28,7 @@ export default class MetaService extends Service {
 
   @action 
   showToast(message, options = {}) {
-    let { timeout = 3000, autoclear = true, type } = options;
+    let { timeout = 3500, autoclear = true, type } = options;
     this.toastMsg = message
     this.toastOptions = {
       timeout, autoclear, type
