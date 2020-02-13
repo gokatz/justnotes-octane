@@ -5,7 +5,7 @@ export default class StoreService extends Service {
 
   async makeRequest(url, options = {}) {
     let rootUrl = 'http://localhost:80';
-    rootUrl = 'https://api.crosa.app:8443';
+    rootUrl = 'https://api.crosa.app';
 
     let { method = 'get', data = {}, params = {} } = options;
     url = rootUrl + url;
