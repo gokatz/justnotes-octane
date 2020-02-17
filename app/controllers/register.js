@@ -25,7 +25,7 @@ export default class RegisterController extends Controller {
         data: {
           email,
           password,
-          username: email
+          username: name
         }
       });
     } catch (error) {
