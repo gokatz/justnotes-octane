@@ -21,6 +21,7 @@
   "devDependencies": {
     "@csstools/postcss-sass": "^4.0.0",
     "@ember/optional-features": "^1.1.0",
+    "@ember/render-modifiers": "^1.0.2",
     "@glimmer/component": "^1.0.0",
     "babel-eslint": "^10.0.3",
     "broccoli-asset-rev": "^3.0.0",
@@ -58,5 +59,8 @@
   },
   "ember": {
     "edition": "octane"
+  },
+  "dependencies": {
+    "medium-editor": "^5.23.3"
   }
 }

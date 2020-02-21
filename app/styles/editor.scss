@@ -1,0 +1,17 @@
+#crosa-editor {
+  a {
+    @apply text-blue-600 underline;
+  }
+
+  blockquote {
+    @apply p-2 border-l bg-gray-200 border-gray-400 rounded text-gray-700 inline-block;
+  }
+
+  h3 {
+    @apply text-lg font-semibold;
+  }
+
+  h2 {
+    @apply text-2xl font-semibold;
+  }
+}

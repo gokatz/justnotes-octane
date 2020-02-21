@@ -45,14 +45,21 @@
     </div>
 
     <div class="mt-4">
-      <Textarea
+      {{!-- <Textarea
         style="height: 70vh"
-        class="resize-none outline-none bg-gray-2000 w-full"
+        class="resize-none outline-none w-full"
         placeholder="Type your notes here..."
         @value={{@model.content}}
         {{on "keyup" this.saveCurrentNote}}
-        autofocus={{true}}
-      ></Textarea>
+        autofocus={{true}} 
+      ></Textarea> --}}
+
+      <Editor
+        @content={{@model.content}}
+        @noteId={{this.note_id}}
+        @handleContentChange={{this.handleContentChange}}
+      />
+
     </div>
 
     <div class="mt-2">

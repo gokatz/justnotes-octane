@@ -1,5 +1,9 @@
-<textarea
-  class="resize-none outline-none"
-  placeholder="Type your notes here..."
-  value={{@note}}
-></textarea>
+<div 
+  {{did-insert (fn this.initializeEditor @content)}} 
+  {{did-update (fn this.updateContentInEditor @noteId)}}
+  {{will-destroy this.removeEditor}}
+  id="crosa-editor" 
+  class="w-full outline-none overflow-auto"
+  style="height: 70vh"
+>
+</div>

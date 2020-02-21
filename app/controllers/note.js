@@ -3,7 +3,7 @@ import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 import { task, didCancel, timeout } from 'ember-concurrency';
 import { reads } from '@ember/object/computed';
-import { action } from '@ember/object';
+import { action, set } from '@ember/object';
 
 export default class NoteController extends Controller {
 
@@ -171,7 +171,9 @@ export default class NoteController extends Controller {
   @action
   async deleteNote(noteId) {
     if (this.isNewNote) {
-      this.meta.showToast('Chill. You don\'t need to delete an empty note');
+      this.meta.showToast('Chill. You don\'t need to delete an empty note', {
+        timeout: 4000
+      });
       return;
     }
     await this.meta.showConfirm({ message: 'Are you sure to delete this note? If you proceed, this note will be archived' });
@@ -214,7 +216,16 @@ export default class NoteController extends Controller {
     let { id = '' } = note;
     // this.model.title = title;
     // this.model.content = content;
+
+    // This is a QP and the Model will be re-triggered on setting note_id 
+    // updating the content
     this.note_id = id;
+  }
+
+  @action
+  handleContentChange(htmlContent) {
+    set(this.model, "content", htmlContent);
+    this.saveCurrentNote(); // Throttling is handled in this function\
   }
 
   @action
